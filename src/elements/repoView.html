@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link type="text/css" rel="stylesheet"
+              href="../../node_modules/materialize-css/dist/css/materialize.min.css"
+              media="screen,projection"/>
+        <title>EleBucket</title>
+    </head>
+    <body>
+        <h5>Branches</h5>
+        <ul id="branchList"></ul>
+    </body>
+    <script>
+        const {ipcRenderer} = require('electron');
+        const branchList = document.querySelector("#branchList");
+        ipcRenderer.on('repo:select', (e, repo) => {
+            branchList.innerHtml = "";
+            Object.keys(repo.branches.remote).forEach(branchName => {
+                const branchLi = document.createElement('li');
+                branchLi.innerText = branchName;
+                branchList.appendChild(branchLi);
+            });
+        });
+    </script>
+</html>

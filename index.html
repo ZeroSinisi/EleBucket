@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link type="text/css" rel="stylesheet"
+              href="node_modules/materialize-css/dist/css/materialize.min.css"
+              media="screen,projection"/>
+        <title>EleBucket</title>
+    </head>
+    <body>
+        <h5>Repositories</h5>
+        <ul id="repoList"></ul>
+    </body>
+    <script>
+        const {ipcRenderer} = require('electron');
+        const repoList = document.querySelector("#repoList");
+        ipcRenderer.on('repo:add', (e, repo) => {
+            const repoLi = document.createElement('li');
+            repoLi.innerText = repo.name;
+            repoLi.addEventListener('dblclick', () => {
+                ipcRenderer.send("repo:select", repo);
+            });
+            repoList.appendChild(repoLi);
+        });
+    </script>
+</html>
