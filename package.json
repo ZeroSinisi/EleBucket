@@ -9,7 +9,7 @@
   "author": "Tony Sinisi",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^2.0.5"
+    "electron": "^2.0.8"
   },
   "dependencies": {
     "materialize-css": "^1.0.0-rc.2",
